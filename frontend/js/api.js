@@ -8,8 +8,8 @@ window.CalcMaster = window.CalcMaster || {};
 
 window.CalcMaster.API = (() => {
   // Configurable base URL
-  const API_BASE = 'http://localhost:8080';
-  const REQUEST_TIMEOUT_MS = 6000;
+  const API_BASE = 'https://calcmaster-rxbo.onrender.com';
+  const REQUEST_TIMEOUT_MS = 60000;
 
   /**
    * Helper function to perform fetch with timeout and JSON error parsing
