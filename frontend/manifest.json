@@ -1,0 +1,25 @@
+{
+  "name": "CalcMaster - Professional Multi-Module Calculator",
+  "short_name": "CalcMaster",
+  "description": "High-precision scientific, financial, statistical calculator and unit converter with glassmorphism UI",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192' fill='none'%3E%3Crect width='192' height='192' rx='42' fill='%230f172a'/%3E%3Crect x='16' y='16' width='160' height='160' rx='32' fill='%231e293b' stroke='%233b82f6' stroke-width='4'/%3E%3Crect x='36' y='36' width='120' height='36' rx='8' fill='%230b1120' stroke='rgba(96,165,250,0.3)' stroke-width='2'/%3E%3Ccircle cx='54' cy='104' r='14' fill='%23334155'/%3E%3Ccircle cx='96' cy='104' r='14' fill='%23334155'/%3E%3Ccircle cx='138' cy='104' r='14' fill='%233b82f6'/%3E%3Ccircle cx='54' cy='144' r='14' fill='%23334155'/%3E%3Ccircle cx='96' cy='144' r='14' fill='%23334155'/%3E%3Ccircle cx='138' cy='144' r='14' fill='%238b5cf6'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='none'%3E%3Crect width='512' height='512' rx='112' fill='%230f172a'/%3E%3Crect x='42' y='42' width='428' height='428' rx='86' fill='%231e293b' stroke='%233b82f6' stroke-width='10'/%3E%3Crect x='96' y='96' width='320' height='96' rx='20' fill='%230b1120' stroke='rgba(96,165,250,0.4)' stroke-width='4'/%3E%3Ccircle cx='144' cy='276' r='36' fill='%23334155'/%3E%3Ccircle cx='256' cy='276' r='36' fill='%23334155'/%3E%3Ccircle cx='368' cy='276' r='36' fill='%233b82f6'/%3E%3Ccircle cx='144' cy='384' r='36' fill='%23334155'/%3E%3Ccircle cx='256' cy='384' r='36' fill='%23334155'/%3E%3Ccircle cx='368' cy='384' r='36' fill='%238b5cf6'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "finance", "productivity", "education"]
+}

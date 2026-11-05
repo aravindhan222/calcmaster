@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="CalcMaster - Professional Multi-Module Web Calculator featuring Standard, Scientific, Financial, Statistics, Unit Converter, and History analysis.">
+  <meta name="theme-color" content="#0f172a">
+  <title>CalcMaster — Professional Calculator</title>
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f172a'/%3E%3Cpath d='M30 30h40v10H30zm0 18h40v10H30zm0 18h18v18H30zm22 0h18v18H52z' fill='%233b82f6'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Inter & JetBrains Mono for High-Precision Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- Chart.js CDN for Financial & Statistical Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- ========================================================================= -->
+  <!-- Application Shell Layout                                                 -->
+  <!-- ========================================================================= -->
+  <div class="app-layout">
+
+    <!-- DESKTOP LEFT SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon-wrapper">
+          <svg class="brand-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="2" width="16" height="20" rx="3" stroke="currentColor"/>
+            <line x1="8" y1="6" x2="16" y2="6"/>
+            <line x1="16" y1="14" x2="16" y2="18"/>
+            <path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Calc<span class="text-accent">Master</span></span>
+          <span class="brand-version">PRO v2.4</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group-label">CALCULATORS</div>
+        <a href="#standard" class="nav-item active" data-nav-target="standard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+            <line x1="8" y1="6" x2="16" y2="6"/>
+            <line x1="16" y1="14" x2="16" y2="18"/>
+            <line x1="8" y1="10" x2="8.01" y2="10"/>
+            <line x1="12" y1="10" x2="12.01" y2="10"/>
+            <line x1="16" y1="10" x2="16.01" y2="10"/>
+            <line x1="8" y1="14" x2="8.01" y2="14"/>
+            <line x1="12" y1="14" x2="12.01" y2="14"/>
+            <line x1="8" y1="18" x2="8.01" y2="18"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+          <span class="nav-label">Standard</span>
+        </a>
+
+        <a href="#scientific" class="nav-item" data-nav-target="scientific">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 21h10M12 3v18M3 7l4 4-4 4M21 7l-4 4 4 4"/>
+          </svg>
+          <span class="nav-label">Scientific</span>
+        </a>
+
+        <a href="#financial" class="nav-item" data-nav-target="financial">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span class="nav-label">Financial & EMI</span>
+        </a>
+
+        <a href="#statistics" class="nav-item" data-nav-target="statistics">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <span class="nav-label">Statistics</span>
+        </a>
+
+        <a href="#converter" class="nav-item" data-nav-target="converter">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m16 3 4 4-4 4M20 7H4M8 21l-4-4 4-4M4 17h16"/>
+          </svg>
+          <span class="nav-label">Unit Converter</span>
+        </a>
+
+        <div class="nav-group-label" style="margin-top: 24px;">UTILITIES</div>
+
+        <a href="#history" class="nav-item" data-nav-target="history">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span class="nav-label">History</span>
+        </a>
+
+        <a href="#settings" class="nav-item" data-nav-target="settings">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span class="nav-label">Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="connection-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Backend Connected</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN WRAPPER (Top Header + Dynamic Content) -->
+    <div class="app-main-wrapper">
+
+      <!-- TOP APP HEADER BAR -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+          <div class="header-title-wrapper">
+            <h1 class="header-title" id="page-header-title">Standard Calculator</h1>
+            <span class="header-subtitle">Professional Computing Suite</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Memory Indicator Pill -->
+          <div class="memory-indicator" id="global-memory-indicator" title="Memory Slot Value">
+            M
+          </div>
+
+          <!-- Dark/Light Mode Switcher -->
+          <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- SCROLLABLE CONTENT AREA -->
+      <main class="main-content-area" id="main-content-area">
+
+        <!-- ================================================================= -->
+        <!-- SECTION 1: STANDARD CALCULATOR                                    -->
+        <!-- ================================================================= -->
+        <section class="calc-section section-active" data-section="standard" id="section-standard">
+          <div class="calculator-container standard-calc-wrapper">
+
+            <!-- Recent Calculations Chips Bar -->
+            <div class="recent-bar" id="std-recent-bar">
+              <span class="recent-label">Recent:</span>
+              <div class="recent-chips-container" id="std-recent-list">
+                <!-- Dynamically populated chips -->
+              </div>
+            </div>
+
+            <!-- Standard Display Area -->
+            <div class="calc-display-card">
+              <div class="display-header">
+                <span class="memory-indicator" id="std-memory-indicator" style="display: none;">M</span>
+                <span class="display-preview" id="std-preview"></span>
+                <button class="btn-copy-display" id="std-copy-btn" title="Copy Result">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+              <div class="display-body">
+                <div class="expression-line font-mono" id="std-expression"></div>
+                <div class="result-line font-mono" id="std-result">0</div>
+              </div>
+            </div>
+
+            <!-- Memory Bar Row -->
+            <div class="memory-bar" id="std-memory-bar">
+              <button class="btn btn-mem" data-mem-action="MC" title="Memory Clear">MC</button>
+              <button class="btn btn-mem" data-mem-action="MR" title="Memory Recall">MR</button>
+              <button class="btn btn-mem" data-mem-action="MS" title="Memory Store">MS</button>
+              <button class="btn btn-mem" data-mem-action="M+" title="Memory Add">M+</button>
+              <button class="btn btn-mem" data-mem-action="M-" title="Memory Subtract">M-</button>
+            </div>
+
+            <!-- Keypad (5 columns x 5 rows) -->
+            <div class="calc-keypad keypad-5col" id="std-keypad">
+              <!-- Row 1 -->
+              <button class="calc-btn btn-function" data-action="clear" id="btn-ac" title="All Clear (Esc)">AC</button>
+              <button class="calc-btn btn-function" data-action="negate" id="btn-negate" title="Negate (±)">±</button>
+              <button class="calc-btn btn-function" data-action="percent" id="btn-percent" title="Percentage (%)">%</button>
+              <button class="calc-btn btn-operator" data-action="operator" data-value="÷" id="btn-divide" title="Divide (/)">÷</button>
+              <button class="calc-btn btn-function" data-action="delete" id="btn-del" title="Backspace">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/>
+                  <line x1="18" y1="9" x2="12" y2="15"/>
+                  <line x1="12" y1="9" x2="18" y2="15"/>
+                </svg>
+              </button>
+
+              <!-- Row 2 -->
+              <button class="calc-btn btn-number" data-action="digit" data-value="7">7</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="8">8</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="9">9</button>
+              <button class="calc-btn btn-operator" data-action="operator" data-value="×" id="btn-multiply" title="Multiply (*)">×</button>
+              <button class="calc-btn btn-parenthesis" data-action="parenthesis" data-value="(">(</button>
+
+              <!-- Row 3 -->
+              <button class="calc-btn btn-number" data-action="digit" data-value="4">4</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="5">5</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="6">6</button>
+              <button class="calc-btn btn-operator" data-action="operator" data-value="-" id="btn-subtract" title="Subtract (-)">−</button>
+              <button class="calc-btn btn-parenthesis" data-action="parenthesis" data-value=")">)</button>
+
+              <!-- Row 4 -->
+              <button class="calc-btn btn-number" data-action="digit" data-value="1">1</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="2">2</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="3">3</button>
+              <button class="calc-btn btn-operator" data-action="operator" data-value="+" id="btn-add" title="Add (+)">+</button>
+              <button class="calc-btn btn-function" data-action="operator" data-value="^" title="Power (^)">^</button>
+
+              <!-- Row 5 -->
+              <button class="calc-btn btn-number" data-action="digit" data-value="0">0</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="00">00</button>
+              <button class="calc-btn btn-number" data-action="decimal" data-value=".">.</button>
+              <button class="calc-btn btn-equals span-2" data-action="calculate" id="btn-equals" title="Calculate (Enter)">=</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 2: SCIENTIFIC CALCULATOR                                  -->
+        <!-- ================================================================= -->
+        <section class="calc-section" data-section="scientific" id="section-scientific" style="display: none;">
+          <div class="calculator-container scientific-calc-wrapper">
+
+            <!-- Scientific Display -->
+            <div class="calc-display-card">
+              <div class="display-header">
+                <div class="display-badges-group">
+                  <span class="badge badge-primary clickable" id="sci-angle-badge" title="Click to toggle DEG/RAD">DEG</span>
+                  <span class="memory-indicator" id="sci-memory-indicator" style="display: none;">M</span>
+                </div>
+                <span class="display-preview" id="sci-preview"></span>
+                <button class="btn-copy-display" id="sci-copy-btn" title="Copy Result">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+              <div class="display-body">
+                <div class="expression-line font-mono" id="sci-expression"></div>
+                <div class="result-line font-mono" id="sci-result">0</div>
+              </div>
+            </div>
+
+            <!-- Memory Bar Row -->
+            <div class="memory-bar" id="sci-memory-bar">
+              <button class="btn btn-mem" data-mem-action="MC">MC</button>
+              <button class="btn btn-mem" data-mem-action="MR">MR</button>
+              <button class="btn btn-mem" data-mem-action="MS">MS</button>
+              <button class="btn btn-mem" data-mem-action="M+">M+</button>
+              <button class="btn btn-mem" data-mem-action="M-">M-</button>
+            </div>
+
+            <!-- Scientific Functions Rows -->
+            <div class="sci-functions-grid" id="sci-functions-keypad">
+              <!-- Scientific Row 1: sin, cos, tan, ln, log, √, x², xʸ, π, e -->
+              <button class="calc-btn btn-scientific" data-action="function" data-value="sin">sin</button>
+              <button class="calc-btn btn-scientific" data-action="function" data-value="cos">cos</button>
+              <button class="calc-btn btn-scientific" data-action="function" data-value="tan">tan</button>
+              <button class="calc-btn btn-scientific" data-action="function" data-value="ln">ln</button>
+              <button class="calc-btn btn-scientific" data-action="function" data-value="log">log</button>
+              <button class="calc-btn btn-scientific" data-action="function" data-value="sqrt">√</button>
+              <button class="calc-btn btn-scientific" data-action="power" data-value="sq">x²</button>
+              <button class="calc-btn btn-scientific" data-action="power" data-value="y">xʸ</button>
+              <button class="calc-btn btn-scientific" data-action="constant" data-value="pi">π</button>
+              <button class="calc-btn btn-scientific" data-action="constant" data-value="e">e</button>
+
+              <!-- Scientific Row 2: asin, acos, atan, |x|, n!, (, ), DEG/RAD toggle, 1/x, 10ˣ -->
+              <button class="calc-btn btn-scientific" data-action="function" data-value="asin">sin⁻¹</button>
+              <button class="calc-btn btn-scientific" data-action="function" data-value="acos">cos⁻¹</button>
+              <button class="calc-btn btn-scientific" data-action="function" data-value="atan">tan⁻¹</button>
+              <button class="calc-btn btn-scientific" data-action="function" data-value="abs">|x|</button>
+              <button class="calc-btn btn-scientific" data-action="factorial" data-value="!">n!</button>
+              <button class="calc-btn btn-scientific" data-action="parenthesis" data-value="(">(</button>
+              <button class="calc-btn btn-scientific" data-action="parenthesis" data-value=")">)</button>
+              <button class="calc-btn btn-scientific btn-highlight" data-action="toggle-angle" id="sci-btn-deg-rad">DEG</button>
+              <button class="calc-btn btn-scientific" data-action="power" data-value="inv">¹/x</button>
+              <button class="calc-btn btn-scientific" data-action="power" data-value="ten">10ˣ</button>
+            </div>
+
+            <!-- Standard Keypad Below Scientific Functions -->
+            <div class="calc-keypad keypad-5col" id="sci-keypad">
+              <button class="calc-btn btn-function" data-action="clear">AC</button>
+              <button class="calc-btn btn-function" data-action="negate">±</button>
+              <button class="calc-btn btn-function" data-action="percent">%</button>
+              <button class="calc-btn btn-operator" data-action="operator" data-value="÷">÷</button>
+              <button class="calc-btn btn-function" data-action="delete">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/>
+                  <line x1="18" y1="9" x2="12" y2="15"/>
+                  <line x1="12" y1="9" x2="18" y2="15"/>
+                </svg>
+              </button>
+
+              <button class="calc-btn btn-number" data-action="digit" data-value="7">7</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="8">8</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="9">9</button>
+              <button class="calc-btn btn-operator" data-action="operator" data-value="×">×</button>
+              <button class="calc-btn btn-parenthesis" data-action="parenthesis" data-value="(">(</button>
+
+              <button class="calc-btn btn-number" data-action="digit" data-value="4">4</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="5">5</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="6">6</button>
+              <button class="calc-btn btn-operator" data-action="operator" data-value="-">−</button>
+              <button class="calc-btn btn-parenthesis" data-action="parenthesis" data-value=")">)</button>
+
+              <button class="calc-btn btn-number" data-action="digit" data-value="1">1</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="2">2</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="3">3</button>
+              <button class="calc-btn btn-operator" data-action="operator" data-value="+">+</button>
+              <button class="calc-btn btn-function" data-action="operator" data-value="^">^</button>
+
+              <button class="calc-btn btn-number" data-action="digit" data-value="0">0</button>
+              <button class="calc-btn btn-number" data-action="digit" data-value="00">00</button>
+              <button class="calc-btn btn-number" data-action="decimal" data-value=".">.</button>
+              <button class="calc-btn btn-equals span-2" data-action="calculate">=</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 3: FINANCIAL & EMI CALCULATOR                             -->
+        <!-- ================================================================= -->
+        <section class="calc-section" data-section="financial" id="section-financial" style="display: none;">
+          <div class="financial-container">
+
+            <!-- Sub-Tabs Navigation -->
+            <div class="financial-tabs-header">
+              <button class="financial-subtab active" data-financial-tab="emi">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+                EMI & Loan Amortization
+              </button>
+              <button class="financial-subtab" data-financial-tab="compound">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                Compound Interest
+              </button>
+              <button class="financial-subtab" data-financial-tab="simple">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Simple Interest
+              </button>
+            </div>
+
+            <!-- PANE 1: EMI CALCULATOR -->
+            <div class="financial-pane" id="financial-pane-emi">
+              <div class="grid-2col">
+
+                <!-- Form Card -->
+                <div class="glass-card">
+                  <h3 class="card-title">Loan Parameters</h3>
+                  <form id="emi-form" class="financial-form">
+                    <div class="form-group">
+                      <label for="emi-currency">Currency</label>
+                      <select id="emi-currency" class="form-control">
+                        <option value="INR">INR — Indian Rupee (₹)</option>
+                        <option value="USD">USD — US Dollar ($)</option>
+                        <option value="EUR">EUR — Euro (€)</option>
+                        <option value="GBP">GBP — British Pound (£)</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="emi-principal">Principal Loan Amount</label>
+                      <input type="number" id="emi-principal" class="form-control" value="1000000" min="1" step="any" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="emi-rate">Annual Interest Rate (%)</label>
+                      <input type="number" id="emi-rate" class="form-control" value="8.5" min="0.01" max="100" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="emi-tenure">Loan Tenure (Months)</label>
+                      <input type="number" id="emi-tenure" class="form-control" value="120" min="1" max="480" required>
+                      <small class="form-hint">E.g., 10 years = 120 months, 20 years = 240 months</small>
+                    </div>
+
+                    <div class="form-actions">
+                      <button type="submit" class="btn btn-primary btn-block">Calculate EMI</button>
+                      <button type="button" class="btn btn-secondary" id="emi-reset-btn">Reset</button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Result Summary & Pie Chart -->
+                <div class="glass-card">
+                  <div class="card-header-flex">
+                    <h3 class="card-title">Payment Breakdown</h3>
+                    <button class="btn btn-sm btn-ghost" id="emi-copy-result-btn" title="Copy EMI">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      Copy
+                    </button>
+                  </div>
+
+                  <!-- 4 Summary metric boxes -->
+                  <div class="metrics-grid-2x2">
+                    <div class="metric-box highlight">
+                      <span class="metric-label">Monthly EMI</span>
+                      <span class="metric-val text-primary" id="emi-monthly-val">₹ 12,398.57</span>
+                    </div>
+                    <div class="metric-box">
+                      <span class="metric-label">Total Principal</span>
+                      <span class="metric-val" id="emi-principal-val">₹ 1,000,000.00</span>
+                    </div>
+                    <div class="metric-box">
+                      <span class="metric-label">Total Interest</span>
+                      <span class="metric-val text-rose" id="emi-interest-val">₹ 487,828.40</span>
+                    </div>
+                    <div class="metric-box">
+                      <span class="metric-label">Total Payment</span>
+                      <span class="metric-val font-semibold" id="emi-total-val">₹ 1,487,828.40</span>
+                    </div>
+                  </div>
+
+                  <!-- Pie Chart Canvas -->
+                  <div class="chart-container" style="height: 220px; margin-top: 16px;">
+                    <canvas id="emi-pie-chart"></canvas>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Balance Progression Line Chart -->
+              <div class="glass-card" style="margin-top: 24px;">
+                <h3 class="card-title">Outstanding Loan Balance Over Time</h3>
+                <div class="chart-container" style="height: 240px; margin-top: 12px;">
+                  <canvas id="emi-line-chart"></canvas>
+                </div>
+              </div>
+
+              <!-- Amortization Schedule Table -->
+              <div class="glass-card" style="margin-top: 24px;">
+                <div class="card-header-flex">
+                  <h3 class="card-title">Amortization Schedule</h3>
+                  <div class="table-pagination-controls">
+                    <span id="amortization-page-info" class="text-muted text-sm" style="margin-right: 12px;">Page 1</span>
+                    <button class="btn btn-sm btn-ghost" id="amortization-prev-page">◀ Prev</button>
+                    <button class="btn btn-sm btn-ghost" id="amortization-next-page">Next ▶</button>
+                  </div>
+                </div>
+
+                <div class="table-responsive" style="margin-top: 12px;">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Period</th>
+                        <th>EMI Payment</th>
+                        <th>Principal Paid</th>
+                        <th>Interest Paid</th>
+                        <th>Remaining Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody id="amortization-table-body">
+                      <!-- Dynamically injected rows -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 2: COMPOUND INTEREST -->
+            <div class="financial-pane" id="financial-pane-compound" style="display: none;">
+              <div class="grid-2col">
+                <div class="glass-card">
+                  <h3 class="card-title">Compound Growth Inputs</h3>
+                  <form id="ci-form" class="financial-form">
+                    <div class="form-group">
+                      <label for="ci-currency">Currency</label>
+                      <select id="ci-currency" class="form-control">
+                        <option value="INR">INR (₹)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="ci-principal">Initial Principal Investment</label>
+                      <input type="number" id="ci-principal" class="form-control" value="500000" min="1" step="any" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="ci-rate">Annual Interest Rate (%)</label>
+                      <input type="number" id="ci-rate" class="form-control" value="10" min="0.01" max="100" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="ci-years">Duration (Years)</label>
+                      <input type="number" id="ci-years" class="form-control" value="5" min="1" max="60" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="ci-frequency">Compounding Frequency</label>
+                      <select id="ci-frequency" class="form-control">
+                        <option value="12">Monthly (12/year)</option>
+                        <option value="4">Quarterly (4/year)</option>
+                        <option value="2">Semi-Annually (2/year)</option>
+                        <option value="1">Annually (1/year)</option>
+                        <option value="365">Daily (365/year)</option>
+                      </select>
+                    </div>
+                    <div class="form-actions">
+                      <button type="submit" class="btn btn-primary btn-block">Calculate Compound Growth</button>
+                      <button type="button" class="btn btn-secondary" id="ci-reset-btn">Reset</button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="glass-card">
+                  <div class="card-header-flex">
+                    <h3 class="card-title">Investment Projection</h3>
+                    <button class="btn btn-sm btn-ghost" id="ci-copy-result-btn">Copy</button>
+                  </div>
+                  <div class="metrics-grid-2x2">
+                    <div class="metric-box highlight">
+                      <span class="metric-label">Future Maturity Value</span>
+                      <span class="metric-val text-emerald" id="ci-future-val">₹ 822,654.14</span>
+                    </div>
+                    <div class="metric-box">
+                      <span class="metric-label">Invested Principal</span>
+                      <span class="metric-val" id="ci-principal-val">₹ 500,000.00</span>
+                    </div>
+                    <div class="metric-box">
+                      <span class="metric-label">Total Compound Interest</span>
+                      <span class="metric-val text-indigo" id="ci-interest-val">₹ 322,654.14</span>
+                    </div>
+                  </div>
+                  <div class="chart-container" style="height: 240px; margin-top: 16px;">
+                    <canvas id="ci-pie-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 3: SIMPLE INTEREST -->
+            <div class="financial-pane" id="financial-pane-simple" style="display: none;">
+              <div class="grid-2col">
+                <div class="glass-card">
+                  <h3 class="card-title">Simple Interest Parameters</h3>
+                  <form id="si-form" class="financial-form">
+                    <div class="form-group">
+                      <label for="si-currency">Currency</label>
+                      <select id="si-currency" class="form-control">
+                        <option value="INR">INR (₹)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="si-principal">Principal Amount</label>
+                      <input type="number" id="si-principal" class="form-control" value="200000" min="1" step="any" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="si-rate">Annual Interest Rate (%)</label>
+                      <input type="number" id="si-rate" class="form-control" value="7" min="0.01" max="100" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="si-years">Time Period (Years)</label>
+                      <input type="number" id="si-years" class="form-control" value="3" min="0.1" max="100" step="any" required>
+                    </div>
+                    <div class="form-actions">
+                      <button type="submit" class="btn btn-primary btn-block">Calculate Simple Interest</button>
+                      <button type="button" class="btn btn-secondary" id="si-reset-btn">Reset</button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="glass-card">
+                  <div class="card-header-flex">
+                    <h3 class="card-title">Return Summary</h3>
+                    <button class="btn btn-sm btn-ghost" id="si-copy-result-btn">Copy</button>
+                  </div>
+                  <div class="metrics-grid-2x2">
+                    <div class="metric-box highlight">
+                      <span class="metric-label">Total Amount Payable</span>
+                      <span class="metric-val text-primary" id="si-total-val">₹ 242,000.00</span>
+                    </div>
+                    <div class="metric-box">
+                      <span class="metric-label">Principal Amount</span>
+                      <span class="metric-val" id="si-principal-val">₹ 200,000.00</span>
+                    </div>
+                    <div class="metric-box">
+                      <span class="metric-label">Total Simple Interest</span>
+                      <span class="metric-val text-amber" id="si-interest-val">₹ 42,000.00</span>
+                    </div>
+                  </div>
+                  <div class="chart-container" style="height: 240px; margin-top: 16px;">
+                    <canvas id="si-pie-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 4: STATISTICS CALCULATOR                                  -->
+        <!-- ================================================================= -->
+        <section class="calc-section" data-section="statistics" id="section-statistics" style="display: none;">
+          <div class="statistics-container">
+            <!-- Input & Dataset Selection Card -->
+            <div class="glass-card">
+              <div class="card-header-flex">
+                <h3 class="card-title">Dataset Analysis Engine</h3>
+                <div class="sample-picker-wrapper">
+                  <label for="stats-sample-select" class="text-sm text-muted">Load Preset:</label>
+                  <select id="stats-sample-select" class="form-control form-control-sm" style="width: auto;">
+                    <option value="">Choose preset...</option>
+                    <option value="examScores">Exam Scores (N=15)</option>
+                    <option value="salesData">Monthly Sales (N=10)</option>
+                    <option value="normalDist">Lab Samples (N=12)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 16px;">
+                <label for="stats-input">Enter Numeric Data (Comma, Space, or Newline separated)</label>
+                <textarea id="stats-input" class="form-control font-mono" rows="3" placeholder="e.g. 72, 85, 91, 68, 77, 85, 94, 62, 88, 79, 85, 90"></textarea>
+              </div>
+
+              <div class="form-actions-inline">
+                <button class="btn btn-primary" id="stats-calculate-btn">Compute Statistical Parameters</button>
+                <button class="btn btn-secondary" id="stats-clear-btn">Clear Data</button>
+              </div>
+            </div>
+
+            <!-- 10 Results Metric Grid -->
+            <div class="stats-results-grid" style="margin-top: 24px;">
+              <div class="stat-card">
+                <span class="stat-label">Sample Count (N)</span>
+                <span class="stat-value text-primary" id="stat-count">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Sum (Σx)</span>
+                <span class="stat-value" id="stat-sum">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Mean (Average)</span>
+                <span class="stat-value text-emerald font-semibold" id="stat-mean">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Median</span>
+                <span class="stat-value" id="stat-median">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Mode</span>
+                <span class="stat-value" id="stat-mode">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Standard Deviation (σ)</span>
+                <span class="stat-value text-purple font-semibold" id="stat-stddev">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Variance (σ²)</span>
+                <span class="stat-value" id="stat-variance">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Minimum</span>
+                <span class="stat-value" id="stat-min">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Maximum</span>
+                <span class="stat-value" id="stat-max">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">Range</span>
+                <span class="stat-value" id="stat-range">—</span>
+              </div>
+            </div>
+
+            <!-- Visualization Charts -->
+            <div class="grid-2col" style="margin-top: 24px;">
+              <div class="glass-card">
+                <h3 class="card-title">Frequency Distribution Histogram</h3>
+                <div class="chart-container" style="height: 260px; margin-top: 12px;">
+                  <canvas id="stats-bar-chart"></canvas>
+                </div>
+              </div>
+              <div class="glass-card">
+                <h3 class="card-title">Data Point Sequence / Scatter</h3>
+                <div class="chart-container" style="height: 260px; margin-top: 12px;">
+                  <canvas id="stats-scatter-chart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 5: UNIT CONVERTER                                         -->
+        <!-- ================================================================= -->
+        <section class="calc-section" data-section="converter" id="section-converter" style="display: none;">
+          <div class="converter-container">
+            <div class="glass-card converter-card">
+
+              <!-- Category Pills -->
+              <div class="converter-cat-pills">
+                <button class="converter-cat-pill active" data-category="LENGTH">Length</button>
+                <button class="converter-cat-pill" data-category="MASS">Mass / Weight</button>
+                <button class="converter-cat-pill" data-category="TEMPERATURE">Temperature</button>
+                <button class="converter-cat-pill" data-category="DATA">Digital Storage</button>
+              </div>
+
+              <!-- Category Dropdown (Mobile fallback) -->
+              <div class="form-group converter-cat-select-wrap">
+                <label for="convert-category-select">Select Category</label>
+                <select id="convert-category-select" class="form-control">
+                  <option value="LENGTH">Length & Distance</option>
+                  <option value="MASS">Mass & Weight</option>
+                  <option value="TEMPERATURE">Temperature</option>
+                  <option value="DATA">Digital Data Storage</option>
+                </select>
+              </div>
+
+              <!-- Converter Input Grid -->
+              <div class="converter-flow-grid">
+                <!-- From Column -->
+                <div class="converter-col">
+                  <label for="convert-value-input">Input Value</label>
+                  <input type="number" id="convert-value-input" class="form-control form-control-lg font-mono" value="100" step="any">
+                  <label for="convert-from-select" style="margin-top: 12px;">From Unit</label>
+                  <select id="convert-from-select" class="form-control form-control-lg"></select>
+                </div>
+
+                <!-- Swap Button -->
+                <div class="converter-swap-col">
+                  <button class="btn-swap-units" id="convert-swap-btn" title="Swap Units" aria-label="Swap from and to units">
+                    <svg id="convert-swap-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- To Column -->
+                <div class="converter-col">
+                  <label>Converted Result</label>
+                  <div class="converter-result-display">
+                    <div class="result-text font-mono" id="convert-result-val">328.084 ft</div>
+                  </div>
+                  <label for="convert-to-select" style="margin-top: 12px;">To Unit</label>
+                  <select id="convert-to-select" class="form-control form-control-lg"></select>
+                </div>
+              </div>
+
+              <!-- Formula & Actions Bar -->
+              <div class="converter-footer">
+                <div class="converter-formula-box">
+                  <span class="formula-label">Formula / Reference:</span>
+                  <span class="formula-text font-mono" id="convert-formula-text">1 m = 3.28084 ft</span>
+                </div>
+                <div class="converter-actions">
+                  <button class="btn btn-secondary" id="convert-copy-btn">Copy Result</button>
+                  <button class="btn btn-primary" id="convert-submit-btn">Convert Now</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 6: HISTORY AUDIT LOG                                      -->
+        <!-- ================================================================= -->
+        <section class="calc-section" data-section="history" id="section-history" style="display: none;">
+          <div class="history-container">
+            <!-- Controls Filter & Search Bar -->
+            <div class="glass-card history-controls-card">
+              <div class="history-controls-grid">
+                <div class="search-input-wrapper">
+                  <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                  <input type="text" id="history-search-input" class="form-control" placeholder="Search expressions, results...">
+                </div>
+
+                <div class="filter-select-wrapper">
+                  <select id="history-type-filter" class="form-control">
+                    <option value="ALL">All Types</option>
+                    <option value="STANDARD">Standard</option>
+                    <option value="SCIENTIFIC">Scientific</option>
+                    <option value="FINANCIAL">Financial</option>
+                    <option value="STATISTICS">Statistics</option>
+                    <option value="CONVERSION">Conversion</option>
+                  </select>
+                </div>
+
+                <div class="history-action-buttons">
+                  <button class="btn btn-secondary" id="history-refresh-btn" title="Reload History">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  </button>
+                  <button class="btn btn-secondary" id="history-export-csv-btn" title="Download CSV">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    CSV
+                  </button>
+                  <button class="btn btn-secondary" id="history-export-pdf-btn" title="Download PDF">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    PDF
+                  </button>
+                  <button class="btn btn-outline-danger" id="history-clear-all-btn" title="Clear All History">
+                    Clear All
+                  </button>
+                </div>
+              </div>
+
+              <div class="history-meta-bar">
+                <span class="text-muted text-sm" id="history-total-count">0 entries</span>
+              </div>
+            </div>
+
+            <!-- History Cards List -->
+            <div class="history-list-grid" id="history-list-container" style="margin-top: 16px;">
+              <!-- Dynamically populated history cards or empty state -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 7: SETTINGS                                               -->
+        <!-- ================================================================= -->
+        <section class="calc-section" data-section="settings" id="section-settings" style="display: none;">
+          <div class="settings-container">
+
+            <div class="glass-card settings-card">
+              <h3 class="card-title">Appearance & Theme</h3>
+              <p class="text-muted text-sm">Choose high-contrast dark navy or a warm daylight layout with teal accents.</p>
+              <div class="theme-picker-group" style="margin-top: 16px;">
+                <label class="radio-card">
+                  <input type="radio" name="theme-choice" value="dark" checked>
+                  <div class="radio-card-content">
+                    <div class="theme-preview-box dark-preview"></div>
+                    <span class="radio-title">Dark Navy (Default)</span>
+                  </div>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="theme-choice" value="light">
+                  <div class="radio-card-content">
+                    <div class="theme-preview-box light-preview"></div>
+                    <span class="radio-title">Warm Daylight</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="glass-card settings-card" style="margin-top: 20px;">
+              <h3 class="card-title">Calculation Precision & Notation</h3>
+              <div class="form-group" style="margin-top: 16px;">
+                <div class="slider-label-row">
+                  <label for="setting-precision-slider">Decimal Precision:</label>
+                  <span class="font-mono text-primary font-semibold" id="setting-precision-val">10 digits</span>
+                </div>
+                <input type="range" id="setting-precision-slider" min="6" max="34" value="10" class="form-slider">
+                <small class="form-hint">Adjust decimal precision up to 34 digits for scientific precision.</small>
+              </div>
+
+              <div class="form-group" style="margin-top: 20px;">
+                <label>Default Trigonometric Angle Unit:</label>
+                <div class="radio-inline-group" style="margin-top: 8px;">
+                  <label class="radio-inline">
+                    <input type="radio" name="angle-choice" value="DEG" checked>
+                    <span>Degrees (DEG)</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="angle-choice" value="RAD">
+                    <span>Radians (RAD)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 20px;">
+                <label>Number Formatting Representation:</label>
+                <div class="radio-inline-group" style="margin-top: 8px;">
+                  <label class="radio-inline">
+                    <input type="radio" name="format-choice" value="standard" checked>
+                    <span>Standard (1,234.56)</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="format-choice" value="scientific">
+                    <span>Scientific Notation (1.234e+3)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Named Memory Slots Manager -->
+            <div class="glass-card settings-card" style="margin-top: 20px;">
+              <div class="card-header-flex">
+                <div>
+                  <h3 class="card-title">Memory Slots Storage</h3>
+                  <p class="text-muted text-sm">Inspect and manage active memory registries (M, M1, M2, M3).</p>
+                </div>
+                <button class="btn btn-sm btn-outline-danger" id="btn-settings-clear-memory">Clear All Memory</button>
+              </div>
+
+              <div class="table-responsive" style="margin-top: 16px;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Slot Name</th>
+                      <th>Stored Value</th>
+                      <th style="text-align: right;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="settings-memory-table-body">
+                    <!-- Populated by settings.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Data Maintenance Card -->
+            <div class="glass-card settings-card" style="margin-top: 20px;">
+              <h3 class="card-title">Data Maintenance</h3>
+              <p class="text-muted text-sm">Manage browser local storage cache and computation audit logs.</p>
+              <div class="form-actions-inline" style="margin-top: 16px;">
+                <button class="btn btn-outline-danger" id="btn-settings-clear-history">Purge All History Records</button>
+              </div>
+            </div>
+
+            <!-- About CalcMaster Card -->
+            <div class="glass-card settings-card" style="margin-top: 20px;">
+              <div class="about-app-header">
+                <div class="brand-icon-wrapper">
+                  <svg class="brand-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="2" width="16" height="20" rx="3" stroke="currentColor"/>
+                    <line x1="8" y1="6" x2="16" y2="6"/>
+                    <line x1="16" y1="14" x2="16" y2="18"/>
+                    <path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0;">CalcMaster Suite</h3>
+                  <p class="text-muted text-xs">Version 2.4.0 (Enterprise Web Edition)</p>
+                </div>
+              </div>
+              <div class="tech-stack-badges" style="margin-top: 16px;">
+                <span class="badge badge-secondary">HTML5 ES6+</span>
+                <span class="badge badge-secondary">CSS3 Glassmorphism</span>
+                <span class="badge badge-secondary">Chart.js</span>
+                <span class="badge badge-secondary">REST API Backend</span>
+                <span class="badge badge-secondary">PWA Ready</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+
+    </div>
+
+    <!-- MOBILE BOTTOM TAB NAVIGATION BAR -->
+    <nav class="mobile-bottom-bar" id="mobile-bottom-bar">
+      <a href="#standard" class="bottom-tab-item active" data-nav-target="standard">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="2" width="16" height="20" rx="2"/>
+          <line x1="8" y1="6" x2="16" y2="6"/>
+        </svg>
+        <span class="tab-label">Standard</span>
+      </a>
+
+      <a href="#scientific" class="bottom-tab-item" data-nav-target="scientific">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 21h10M12 3v18M3 7l4 4-4 4M21 7l-4 4 4 4"/>
+        </svg>
+        <span class="tab-label">Scientific</span>
+      </a>
+
+      <a href="#financial" class="bottom-tab-item" data-nav-target="financial">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23"/>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+        <span class="tab-label">Finance</span>
+      </a>
+
+      <a href="#statistics" class="bottom-tab-item" data-nav-target="statistics">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+        <span class="tab-label">Stats</span>
+      </a>
+
+      <a href="#converter" class="bottom-tab-item" data-nav-target="converter">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m16 3 4 4-4 4M20 7H4M8 21l-4-4 4-4M4 17h16"/>
+        </svg>
+        <span class="tab-label">Convert</span>
+      </a>
+
+      <a href="#history" class="bottom-tab-item" data-nav-target="history">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span class="tab-label">History</span>
+      </a>
+
+      <a href="#settings" class="bottom-tab-item" data-nav-target="settings">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span class="tab-label">Settings</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- FLOATING TOAST NOTIFICATION CONTAINER                                    -->
+  <!-- ========================================================================= -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- ========================================================================= -->
+  <!-- FULLSCREEN LOADING SPINNER OVERLAY                                       -->
+  <!-- ========================================================================= -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner-box">
+      <div class="spinner"></div>
+      <span class="spinner-text">Processing Calculation...</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT MODULE SCRIPTS                                                -->
+  <!-- ========================================================================= -->
+  <script src="./js/api.js"></script>
+  <script src="./js/memory.js"></script>
+  <script src="./js/settings.js"></script>
+  <script src="./js/calculator.js"></script>
+  <script src="./js/scientific.js"></script>
+  <script src="./js/financial.js"></script>
+  <script src="./js/statistics.js"></script>
+  <script src="./js/converter.js"></script>
+  <script src="./js/history.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
